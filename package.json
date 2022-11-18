@@ -20,6 +20,7 @@
         "wdio-wait-for": "^3.0.0"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.js"
+        "wdio": "wdio run wdio.conf.js",
+        "test": "npx wdio run ./wdio.conf.js"
     }
 }
