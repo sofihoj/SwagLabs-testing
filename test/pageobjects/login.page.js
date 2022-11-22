@@ -1,10 +1,4 @@
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage {
-    /**
-     * define selectors using getter methods
-     */
     get inputUsername () {
         return $('#user-name');
     }
@@ -37,20 +31,32 @@ class LoginPage {
         return $('.title')
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
     async login (username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
         await this.btnLogin.click();
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
+    async sucessLogin (username, password) {
+        await this.login(username, password);
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
+        await expect(this.title).toExist();
+        await expect(this.title).toHaveTextContaining('PRODUCTS');
+        await expect (this.menuIcon).toBeDisplayed();
+        await this.menuIcon.click();
+        await expect(this.btnLogout).toBeDisplayed();
+        await browser.pause(1000)
+        await this.btnLogout.click();
+    }
 
+    async invalidLogin (username, password, message) {
+        await this.login(username, password);
+        await this.errorMessage.waitForDisplayed();
+        await expect(this.errorMessage).toBeDisplayed();
+        await expect(this.errorMessage).toHaveText(message);
+        await expect(this.closeIcon).toBeClickable();
+        await browser.refresh();
+    }
 }
 
 export default new LoginPage();
