@@ -3,6 +3,7 @@ import LoginPage from  '../pageobjects/login.page';
 describe('Login performance_glitch_user', () => {
     beforeAll('Navigate to url', () => {
         browser.url("https://www.saucedemo.com/");
+        browser.setWindowSize(1920, 1080);
     });
 
     it('Should not login with performance_glitch_user and invalid password', async () => {

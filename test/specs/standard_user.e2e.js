@@ -2,7 +2,8 @@ import LoginPage from  '../pageobjects/login.page';
 
 describe('Login standard_user', () => {
     beforeAll('Navigate to url', () => {
-        browser.url("https://www.saucedemo.com/");
+        browser.url("https://www.saucedemo.com/")
+        browser.setWindowSize(1920, 1080);
     });
 
     it('Should not login with standard_user and empty password', async () => {
