@@ -16,4 +16,8 @@ describe('Login problem_user', () => {
     it('Should login with valid credentials (user: problem_user)', async () => {
         await LoginPage.sucessLogin('problem_user', 'secret_sauce');
     });
+
+    it('Should logout', async () => {
+        await LoginPage.logout();
+    });
 });

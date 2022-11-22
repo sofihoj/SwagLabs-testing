@@ -16,4 +16,8 @@ describe('Login performance_glitch_user', () => {
     it('Should login with valid credentials (user: performance_glitch_user)', async () => {
         await LoginPage.sucessLogin('performance_glitch_user', 'secret_sauce');
     });
+
+    it('Should logout', async () => {
+        await LoginPage.logout();
+    });
 });

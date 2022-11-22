@@ -31,6 +31,14 @@ class LoginPage {
         return $('.title')
     }
 
+    get loginLogo () {
+        return $('.login_logo')
+    }
+
+    get appLogo () {
+        return $('.app_logo')
+    }
+
     async login (username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
@@ -42,7 +50,11 @@ class LoginPage {
         await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
         await expect(this.title).toExist();
         await expect(this.title).toHaveTextContaining('PRODUCTS');
+        await expect(this.appLogo).toBeDisplayed()
         await expect (this.menuIcon).toBeDisplayed();
+    }
+
+    async logout () {
         await this.menuIcon.click();
         await expect(this.btnLogout).toBeDisplayed();
         await browser.pause(1000)
@@ -51,6 +63,7 @@ class LoginPage {
 
     async invalidLogin (username, password, message) {
         await this.login(username, password);
+        await expect(this.loginLogo).toBeDisplayed()
         await this.errorMessage.waitForDisplayed();
         await expect(this.errorMessage).toBeDisplayed();
         await expect(this.errorMessage).toHaveText(message);

@@ -17,4 +17,8 @@ describe('Login standard_user', () => {
         await LoginPage.sucessLogin('standard_user', 'secret_sauce');
     });
 
+    it('Should logout', async () => {
+        await LoginPage.logout();
+    });
+
 });
