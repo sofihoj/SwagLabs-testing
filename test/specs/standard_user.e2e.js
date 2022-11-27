@@ -19,28 +19,7 @@ describe('Login standard_user', () => {
         await LoginPage.sucessLogin('standard_user', 'secret_sauce');
     });
 
-    it('Should add a product to the cart', async () => {
-        await Purchase.addProduct();
-    })
-
-    it('Should go to the cart', async () => {
-        await Purchase.goToCart();
-    })
-
-    it('Should go to checkout page', async () => {
-        await Purchase.checkout();
-    })
-
-    it('Should fill the client form', async () => {
-        await Purchase.fillForm('testName', 'testLastName', '2000');
-    })
-
-    it('Should finish the shopping process', async () => {
-        await Purchase.lastStep();
-    });
-
     it('Should logout', async () => {
         await LoginPage.logout();
     });
-
 });

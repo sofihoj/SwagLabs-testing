@@ -1,14 +1,18 @@
 class Purchase {
-    get addToCart () {
-        return $('#add-to-cart-sauce-labs-backpack');
-    }
-
     get shoppingCart () {
         return $('.shopping_cart_link');
     }
 
     get btnCheckout () {
         return $('#checkout');
+    }
+
+    get btnContinueShopping () {
+        return $('#continue-shopping');
+    }
+
+    get btnCancel () {
+        return $('#cancel')
     }
 
     get inputFirstName () {
@@ -43,14 +47,12 @@ class Purchase {
         return $('#checkout_info_container > div > form > div.checkout_info > div.error-message-container.error > h3 > button > svg')
     }
 
-    get title () {
-        return $('.title')
+    get ponyImg () {
+        return $('.pony_express')
     }
 
-    async addProduct () {
-        await this.addToCart.click();
-        const cartItems = await $('#shopping_cart_container > a > span').getText();
-        await expect(cartItems).toBe('1');
+    get title () {
+        return $('.title')
     }
 
     async goToCart () {
@@ -82,6 +84,9 @@ class Purchase {
         await expect(browser).toHaveUrl('https://www.saucedemo.com/checkout-complete.html');
         await expect(this.title).toExist();
         await expect(this.title).toHaveTextContaining('CHECKOUT: COMPLETE!');
+        await expect(this.ponyImg).toBeDisplayed();
+        const imgSource = await this.ponyImg.getAttribute('src');
+        await expect(imgSource).toBe('/static/media/pony-express.46394a5d.png');
         await this.btnBackHome.click();
         await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
     }
