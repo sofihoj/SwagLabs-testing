@@ -1,7 +1,9 @@
 # BaSP - Week 14
 
 Using the [SwagLabs](https://www.saucedemo.com/) website, automated e2e were performed with [WebdriverIO](https://webdriver.io/) framework to test the success and failure cases of login with different users and passwords.
-Also, the purchase flow with standard_user is tested.
+
+# BaSP - Week 15
+Continuing with the [SwagLabs](https://www.saucedemo.com/) website, automated e2e were created to test the purchase flow being logged in with standard_user.
 
 ## How to run the tests
 ```
