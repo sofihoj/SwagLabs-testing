@@ -1,5 +1,6 @@
 import LoginPage from  '../pageobjects/login.page';
 import Purchase from '../pageobjects/purchase.page';
+import Inventory from '../pageobjects/inventory.page';
 
 describe('Login performance_glitch_user', () => {
     beforeAll('Navigate to url', () => {
@@ -20,7 +21,7 @@ describe('Login performance_glitch_user', () => {
     });
 
     it('Should add a product to the cart', async () => {
-        await Purchase.addProduct();
+        await Inventory.addProduct();
     })
 
     it('Should go to the cart', async () => {

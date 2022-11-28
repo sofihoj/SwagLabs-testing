@@ -3,6 +3,10 @@ class Purchase {
         return $('.shopping_cart_link');
     }
 
+    get cartItems () {
+        return $('#shopping_cart_container > a > span');
+    }
+
     get btnCheckout () {
         return $('#checkout');
     }

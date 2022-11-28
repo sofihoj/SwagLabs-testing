@@ -1,7 +1,7 @@
 import LoginPage from  '../pageobjects/login.page';
 import Purchase from '../pageobjects/purchase.page';
 import Inventory from '../pageobjects/inventory.page';
-
+import Info from '../pageobjects/pageInfo.page'
 
 describe('Purchase standard_user', () => {
     beforeAll('Navigate to url', () => {
@@ -20,7 +20,7 @@ describe('Purchase standard_user', () => {
         await Inventory.addJacket.click();
         await Inventory.addOnesie.click();
         await Inventory.addTshirt.click();
-        const cartItems = await $('#shopping_cart_container > a > span').getText();
+        const cartItems = await (Purchase.cartItems).getText();
         await expect(cartItems).toBe('6')
     })
 
@@ -30,9 +30,21 @@ describe('Purchase standard_user', () => {
         await Inventory.removeShirt.click();
         await Inventory.removeJacket.click();
         await Inventory.removeOnesie.click();
-        const cartItems = await $('#shopping_cart_container > a > span').getText();
+        const cartItems = await (Purchase.cartItems).getText();
         await expect(cartItems).toBe('1')
         await Inventory.removeTshirt.click();
+        const cart = await $('#shopping_cart_container > a')
+        await expect(cart).toHaveChildren(0)
+    })
+
+    it('Should add a product and reset the cart', async () => {
+        await Inventory.addProduct();
+        await LoginPage.menuIcon.click();
+        await Info.resetBtn.click();
+        const cart = await $('#shopping_cart_container > a')
+        await expect(cart).toHaveChildren(0)
+        await Info.closeMenu.click()
+        await Inventory.removeBackpack.click();
     })
 
     it('Should add a product to the cart', async () => {
