@@ -91,6 +91,41 @@ describe('Purchase standard_user', () => {
         await Purchase.closeIcon.click();
     })
 
+    it('Should not be able to continue with empty post code in the form', async () => {
+        await Purchase.inputFirstName.setValue('TestName');
+        await Purchase.inputLastName.setValue('TestLastName');
+        await Purchase.btnContinue.click();
+        await expect(Purchase.errorMessage).toBeDisplayed();
+        await expect(Purchase.errorMessage).toHaveText('Error: Postal Code is required');
+        await expect(Purchase.closeIcon).toBeClickable();
+        await Purchase.closeIcon.click();
+        await browser.refresh()
+    })
+
+    it('Should not be able to continue with empty last name in the form', async () => {
+        await Purchase.inputFirstName.setValue('TestName');
+        await Purchase.inputZipCode.setValue('2000');
+        await Purchase.btnContinue.click();
+        await expect(Purchase.errorMessage).toBeDisplayed();
+        await expect(Purchase.errorMessage).toHaveText('Error: Last Name is required');
+        await expect(Purchase.closeIcon).toBeClickable();
+        await Purchase.closeIcon.click();
+        await Purchase.inputFirstName.clearValue();
+        await Purchase.inputZipCode.clearValue();
+        await browser.refresh()
+    })
+
+    it('Should not be able to continue with empty name in the form', async () => {
+        await Purchase.inputLastName.setValue('TestLastName');
+        await Purchase.inputZipCode.setValue('2000');
+        await Purchase.btnContinue.click();
+        await expect(Purchase.errorMessage).toBeDisplayed();
+        await expect(Purchase.errorMessage).toHaveText('Error: First Name is required');
+        await expect(Purchase.closeIcon).toBeClickable();
+        await Purchase.closeIcon.click();
+        await browser.refresh()
+    })
+
     it('Should fill the client form', async () => {
         await Purchase.fillForm('testName', 'testLastName', '2000');
     })
