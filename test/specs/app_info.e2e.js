@@ -36,12 +36,12 @@ describe('App info', () => {
         await browser.switchWindow('https://www.saucedemo.com/inventory.html')
     })
 
-    // it('Should open Linkedin official page', async () => {
-    //     await Info.linkedinIcon.click();
-    //     await browser.switchWindow('https://www.linkedin.com/company/sauce-labs/')
-    //     await expect(browser).toHaveUrl('https://www.linkedin.com/company/sauce-labs/')
-    //     await browser.switchWindow('https://www.saucedemo.com/inventory.html')
-    // })
+    it('Should open Linkedin official page', async () => {
+        await Info.linkedinIcon.click();
+        await browser.switchWindow('Iniciar sesión | LinkedIn')
+        await expect(browser).toHaveUrlContaining('https://www.linkedin.com/')
+        await browser.switchWindow('https://www.saucedemo.com/inventory.html')
+    })
 
     it('Should logout', async () => {
         await LoginPage.logout();
